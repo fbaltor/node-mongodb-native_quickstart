@@ -14,7 +14,7 @@ const client = new MongoClient(url, {
 });
 
 // Inserting document function definition
-const insertDocuments = function (db, callback) {
+function insertDocuments(db, callback) {
   // Get the documents collection
   const collection = db.collection("documents");
 
@@ -26,10 +26,10 @@ const insertDocuments = function (db, callback) {
     console.log("Inserted 3 documents into the collection");
     callback(result);
   });
-};
+}
 
 // Query function definition
-const findDocuments = function (db, callback) {
+function findDocuments(db, callback) {
   const collection = db.collection("documents");
 
   collection.find({}).toArray(function (err, docs) {
@@ -38,10 +38,10 @@ const findDocuments = function (db, callback) {
     console.log(docs);
     callback(docs);
   });
-};
+}
 
 // Function to check if the collection already have documents, reinitializating it if so
-const reintializeCollection = function (db, callback) {
+function reintializeCollection(db, callback) {
   const collection = db.collection("documents");
 
   collection.deleteMany({}, function (err, result) {
@@ -50,7 +50,7 @@ const reintializeCollection = function (db, callback) {
     console.log("A total of " + result.result.n + " were deleted");
     callback(result);
   });
-};
+}
 
 // Use connect method to connect to the Server
 client.connect(function (err) {
